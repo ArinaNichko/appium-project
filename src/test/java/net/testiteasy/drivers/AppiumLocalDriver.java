@@ -6,8 +6,6 @@ import io.appium.java_client.android.options.UiAutomator2Options;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.ios.options.XCUITestOptions;
 import net.testiteasy.annotations.Step;
-import net.testiteasy.utils.variables.OSType;
-
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
@@ -26,18 +24,20 @@ public class AppiumLocalDriver {
         AppiumDriver driver = null;
 
         try {
-            if (testConfig().getOSType() == OSType.ANDROID) {
-                driver = new AndroidDriver(
-                        new URL(testConfig().getAppiumBaseUrl()),
-                        new LocalCapabilities().getAndroidCapabilities());
-                return driver;
+            switch (testConfig().getOSType()) {
+                case ANDROID -> {
+                    driver = new AndroidDriver(
+                            new URL(testConfig().getAppiumBaseUrl()),
+                            new LocalCapabilities().getAndroidCapabilities());
+                    return driver;
+                }
 
-//                case IOS -> {
-//                    driver = new IOSDriver(
-//                            new URL(testConfig().getAppiumBaseUrl()),
-//                            new LocalCapabilities().getIOSCapabilities());
-//                    return driver;
-//                }
+                case IOS -> {
+                    driver = new IOSDriver(
+                            new URL(testConfig().getAppiumBaseUrl()),
+                            new LocalCapabilities().getIOSCapabilities());
+                    return driver;
+                }
             }
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);

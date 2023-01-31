@@ -32,3 +32,4 @@ public class AppiumDriverProvider implements WebDriverProvider {
         return driver;
     }
 }
+

@@ -5,6 +5,8 @@ import io.cucumber.java.en.When;
 import net.testiteasy.screens.search.SearchScreen;
 import net.testiteasy.screens.search.SearchScreenObjectFactory;
 
+import static org.junit.Assert.assertEquals;
+
 
 public class SearchStepDefinitions {
 
@@ -12,13 +14,13 @@ public class SearchStepDefinitions {
 
   @When("user type in search line {string}")
   public void userTypeInSearchLine(String searchInput) {
-    searchScreen.clickOnSearchField();
     searchScreen.typeOnSearchLine(searchInput);
   }
 
 
-  @Then("user follow find first ling that contains Automation for Apps")
-  public void userFollowFindFirstLingThatContainsAutomationForApps() {
+  @Then("user follow find first link that contains {string}")
+  public void userFollowFindFirstLinkThatContains(String text) {
     searchScreen.clickOnFirstLink();
+    assertEquals(searchScreen.getTextFromFirstLink(), text);
   }
 }

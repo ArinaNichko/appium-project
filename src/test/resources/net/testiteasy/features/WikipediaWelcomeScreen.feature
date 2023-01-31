@@ -26,6 +26,6 @@ Feature: Wikipedia welcome screen
     When welcome screen ready
     When user tap on the search field
     When user type in search line "Appium"
-    Then user follow find first ling that contains Automation for Apps
+    Then user follow find first link that contains "Automation for Apps"
 
 

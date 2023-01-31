@@ -6,9 +6,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 import net.testiteasy.utils.variables.OSType;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
-import java.util.List;
 
 import static com.codeborne.selenide.Selenide.$;
 import static net.testiteasy.utils.parameters.TestDataParams.testConfig;
@@ -26,11 +24,9 @@ public class SearchScreen {
   @iOSXCUITFindBy(xpath = "//XCUIElementTypeSearchField[@name=\"Search Wikipedia\"]")
   private SelenideElement SEARCH_WIKIPEDIA_FIELD;
 
-  @AndroidFindBy(xpath = "//ul[@class='android.widget.LinearLayout']//a")
-  private List<WebElement> ListOfLinks;
-
-  @AndroidFindBy(xpath = "//*[contains(@text, 'Automation for Apps')]")
+  @AndroidFindBy(xpath = "//*[contains(@resource-id, 'org.wikipedia:id/page_list_item_description')]")
   private SelenideElement FIRST_LINK;
+
 
   public void waitForMainContainerToAppear() {
     if (testConfig().getOSType() == OSType.IOS) {
@@ -52,6 +48,12 @@ public class SearchScreen {
 
   public void clickOnFirstLink() {
     FIRST_LINK.shouldBe(Condition.visible).click();
+
+
   }
 
+  public String getTextFromFirstLink() {
+
+    return FIRST_LINK.getAttribute("text");
+  }
 }
