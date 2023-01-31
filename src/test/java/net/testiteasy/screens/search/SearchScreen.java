@@ -27,6 +27,9 @@ public class SearchScreen {
   @AndroidFindBy(xpath = "//*[contains(@resource-id, 'org.wikipedia:id/page_list_item_description')]")
   private SelenideElement FIRST_LINK;
 
+  @AndroidFindBy(xpath = "//*[contains(@text, 'Automation for Apps')]")
+  private SelenideElement getTestFirstLink;
+
 
   public void waitForMainContainerToAppear() {
     if (testConfig().getOSType() == OSType.IOS) {
@@ -54,6 +57,6 @@ public class SearchScreen {
 
   public String getTextFromFirstLink() {
 
-    return FIRST_LINK.getAttribute("text");
+    return getTestFirstLink.getText();
   }
 }
